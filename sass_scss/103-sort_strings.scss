@@ -1,0 +1,57 @@
+/* 16. Sort! - Solution found at this address: "https://www.geeksforgeeks.org/sorting-function-in-sass/" */
+@import '103-sort_list.scss';
+
+// Default sort order for the alphabet
+$sort-order: a b c d e f g h i j k l m n o p q r s t u v w x y z !default;
+
+@function compare($string-a, $string-b, $sort-order) {
+    // Convert both strings to lowercase.
+    $string-a: to-lower-case($string-a + unquote(""));
+    $string-b: to-lower-case($string-b + unquote(""));
+
+    // Compare each character of the strings.
+    @for $i from 1 through min(str-length($string-a), str-length($string-b)) {
+
+        $char-a: str-slice($string-a, $i, $i);
+        $char-b: str-slice($string-b, $i, $i);
+
+        // If characters are different, compare their positions in the sort order.
+        @if $char-a and $char-b and index($sort-order, $char-a) != index($sort-order, $char-b) {
+            @return index($sort-order, $char-a) < index($sort-order, $char-b);
+        }
+    }
+
+    // If all compared characters are equal, compare string lengths.
+    @return str-length($string-a) < str-length($string-b);
+}
+
+@function swap($list, $index-a, $index-b) {
+    // Check if the indices are within the list bounds.
+    @if abs($index-a) > length($list) or abs($index-b) > length($list) {
+        @return $list;
+    }
+
+    // Swap the elements at the given indices.
+    $temp: nth($list, $index-a);
+    $list: set-nth($list, $index-a, nth($list, $index-b));
+    $list: set-nth($list, $index-b, $temp);
+    @return $list;
+}
+
+@function sort($list, $sort-order) {
+    @for $i from 1 through length($list) {
+        // Perform a bubble sort.
+        @for $j from $i * -1 through -1 {
+            $j: abs($j);
+
+            // Swap elements if they are in the wrong order.
+            @if $j > 1 and compare(nth($list, $j), nth($list, $j - 1), $sort-order) {
+                $list: swap($list, $j, $j - 1);
+            }
+        }
+    }
+    @return $list;
+}
+
+// Sort the list.
+@debug sort($list_to_sort, $sort-order);
