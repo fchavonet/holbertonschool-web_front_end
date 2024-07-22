@@ -1,0 +1,13 @@
+/* 8. Margin mixin */
+@mixin assign-margins($margin) {
+    margin-left: $margin;
+    margin-right: $margin;
+}
+
+bodty {
+    @include assign-margins(10px);
+}
+
+div {
+    @include assign-margins(15px);
+}
