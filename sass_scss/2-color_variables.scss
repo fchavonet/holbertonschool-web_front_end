@@ -1,0 +1,16 @@
+/* 2. Colors */
+$text-color: #3D3D3D;
+$backgroubnd-color: #6D6D6D;
+
+body {
+    color: $text-color;
+    background-color: $backgroubnd-color;
+}
+
+p {
+    color: $text-color;
+}
+
+h2 {
+    background-color: $backgroubnd-color;
+}
