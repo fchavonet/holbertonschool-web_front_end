@@ -536,15 +536,6 @@ ul.row {
     margin-top: -8.5rem;
 }
 
-.section-body {
-    padding: 10rem 4rem;
-}
-
-.section-category {
-    color: var(--color-white);
-    text-transform: uppercase;
-}
-
 .hero-homepage {
     background-position: 75% 0;
     background-repeat: no-repeat;
@@ -552,8 +543,17 @@ ul.row {
     background-color: #010101;
 }
 
+.section-hero .section-body{
+    padding: 10rem 4rem;
+}
+
 .section-hero .section-title {
     margin-bottom: 5rem;
+}
+
+.section-hero .section-category {
+    color: var(--color-white);
+    text-transform: uppercase;
 }
 
 .section-hero .section-inner {
