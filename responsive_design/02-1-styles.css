@@ -408,21 +408,21 @@ ul.row {
     :root {
         --section-padding: 5rem 1.5rem;
         --section-body-padding: 2rem 0 0;
+    }
 
-        ul.row,
-        .row {
-            flex-direction: column;
-            margin: 0;
-        }
+    ul.row,
+    .row {
+        flex-direction: column;
+        margin: 0;
+    }
 
-        [class^="col-"] {
-            margin: 0 0 3rem 0;
-        }
+    [class^="col-"] {
+        margin: 0 0 3rem 0;
+    }
 
-        .col-1-3,
-        .col-1-2 {
-            width: 100%;
-        }
+    .col-1-3,
+    .col-1-2 {
+        width: 100%;
     }
 }
 
