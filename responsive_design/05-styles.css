@@ -503,12 +503,6 @@ ul.row {
     background: transparent;
 }
 
-.header-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
 .header .menu-icon {
     cursor: pointer;
     padding: 2.5rem;
@@ -542,6 +536,12 @@ ul.row {
 
 .header .menu-icon .navicon::after {
     top: -.7rem;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 /* Footer
