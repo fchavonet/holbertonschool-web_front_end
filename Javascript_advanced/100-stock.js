@@ -1,10 +1,10 @@
-let stock = {
+const stock = {
 	macbook: 2,
 	iphone: 4
 };
 
 function processPayment(itemName) {
-	let key = itemName.toLowerCase();
+	const key = itemName.toLowerCase();
 	stock[key] -= 1;
 	console.log("Payment is being processed for item " + itemName);
 }
@@ -17,7 +17,7 @@ function processError(itemName) {
 function processOrder(itemName, callbackPayment, callbackError) {
 	console.log("Verifying the stock of " + itemName);
 
-	let key = itemName.toLowerCase();
+	const key = itemName.toLowerCase();
 
 	if (stock.hasOwnProperty(key)) {
 		if (stock[key] > 0) {
@@ -32,7 +32,8 @@ function processOrder(itemName, callbackPayment, callbackError) {
 }
 
 function main() {
-	let userInput = prompt("Please enter the item you would like to purchase (Macbook, iPhone)").trim();
+	const userInput = prompt("Please enter the item you would like to purchase (Macbook, iPhone)").trim();
+
 	processOrder(userInput, processPayment, processError);
 }
 

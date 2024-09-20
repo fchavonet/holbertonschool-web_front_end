@@ -1,4 +1,4 @@
-let roomDimensions = {
+const roomDimensions = {
 	width: 50,
 	length: 100,
 	getArea: function () {
@@ -6,6 +6,6 @@ let roomDimensions = {
 	}
 };
 
-let boundGetArea = roomDimensions.getArea.bind(roomDimensions);
+const boundGetArea = roomDimensions.getArea.bind(roomDimensions);
 
 console.log(boundGetArea());

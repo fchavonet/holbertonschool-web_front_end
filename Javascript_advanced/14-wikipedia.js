@@ -6,9 +6,9 @@ function createElement(data) {
 }
 
 function queryWikipedia(callback) {
-	let xhr = new XMLHttpRequest();
+	const xhr = new XMLHttpRequest();
 
-	let url = "https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro&explaintext&redirects=1&titles=Stack%20Overflow&origin=*";
+	const url = "https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro&explaintext&redirects=1&titles=Stack%20Overflow&origin=*";
 
 	xhr.open("GET", url, true);
 
@@ -16,11 +16,11 @@ function queryWikipedia(callback) {
 		if (xhr.readyState === 4) {
 			if (xhr.status === 200) {
 				try {
-					let response = JSON.parse(xhr.responseText);
+					const response = JSON.parse(xhr.responseText);
 
-					let pages = response.query.pages;
-					let pageId = Object.keys(pages)[0];
-					let extract = pages[pageId].extract;
+					const pages = response.query.pages;
+					const pageId = Object.keys(pages)[0];
+					const extract = pages[pageId].extract;
 
 					callback(extract);
 				} catch (e) {

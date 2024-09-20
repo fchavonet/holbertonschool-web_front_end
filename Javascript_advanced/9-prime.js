@@ -17,11 +17,11 @@ function countPrimeNumbers() {
 	return count;
 }
 
-let startTime = performance.now();
-let primeNumbers = countPrimeNumbers();
-let endTime = performance.now();
+const startTime = performance.now();
+const primeNumbers = countPrimeNumbers();
+const endTime = performance.now();
 
-let totalTime = (endTime - startTime);
+const totalTime = (endTime - startTime);
 
 console.log("There are " + primeNumbers + " prime numbers from 2 to 100.");
 console.log("Execution time of printing countPrimeNumbers was " + totalTime + " milliseconds.");

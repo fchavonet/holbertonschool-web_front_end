@@ -13,7 +13,6 @@ function changeMode(size, weight, transform, background, color) {
 // Function to reset default CSS styles.
 function resetCSS() {
 	const allElements = document.querySelectorAll("*");
-
 	// Apply default styles to all elements.
 	allElements.forEach((element) => {
 		element.style.boxSizing = "border-box";

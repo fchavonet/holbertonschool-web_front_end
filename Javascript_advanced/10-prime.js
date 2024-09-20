@@ -19,18 +19,18 @@ function countPrimeNumbers() {
 
 function executeMultipleTimes(times) {
     let primeNumbers;
-    let startTime = performance.now();
+    const startTime = performance.now();
 
     for (let i = 0; i < times; i++) {
         primeNumbers = countPrimeNumbers();
     }
 
-    let endTime = performance.now();
+    const endTime = performance.now();
 
-    let totalTime = (endTime - startTime);
+    const totalTime = (endTime - startTime);
 
     console.log("There are " + primeNumbers + " prime numbers from 2 to 100.");
-    console.log("They will be calculated " + times + " times.")
+    console.log("They will be calculated " + times + " times.");
     console.log("Execution time of calculating prime numbers " + times + " times was " + totalTime + " milliseconds.");
 }
 

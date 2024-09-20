@@ -1,12 +1,12 @@
 function divideBy(firstNumber) {
 	return function (secondNumber) {
-		return secondNumber / firstNumber;
+		return (secondNumber / firstNumber);
 	}
 }
 
 function addBy(firstNumber) {
 	return function (secondNumber) {
-		return firstNumber + secondNumber;
+		return (firstNumber + secondNumber);
 	}
 }
 

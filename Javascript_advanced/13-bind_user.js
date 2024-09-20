@@ -1,4 +1,4 @@
-let user = {
+const user = {
 	hobby: "Calligraphy",
 	favoriteSport: "Hockey",
 	astrologicalSign: "Aries",
@@ -12,6 +12,6 @@ function logWelcomeUser(welcomeString) {
 	return (welcomeString + ", " + this.firstName + ". Your occupation is: " + this.occupation);
 }
 
-let bindLogWelcomeUser = logWelcomeUser.bind(user);
+const bindLogWelcomeUser = logWelcomeUser.bind(user);
 
-console.log(bindLogWelcomeUser("Hello")); 
+console.log(bindLogWelcomeUser("Hello"));

@@ -27,7 +27,7 @@ class studentHogwarts {
   }
 }
 
-let harry = new studentHogwarts();
+const harry = new studentHogwarts();
 harry.setName("Harry");
 harry.rewardStudent();
 harry.rewardStudent();
@@ -35,7 +35,7 @@ harry.rewardStudent();
 harry.rewardStudent();
 console.log(harry.getScore());
 
-let draco = new studentHogwarts();
+const draco = new studentHogwarts();
 draco.setName("Draco");
 draco.rewardStudent();
 draco.penalizeStudent();

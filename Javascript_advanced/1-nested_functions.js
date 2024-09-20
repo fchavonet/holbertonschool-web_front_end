@@ -1,8 +1,8 @@
-let globalVariable = "Welcome";
+const globalVariable = "Welcome";
 
 function outer() {
-	let course = "Holberton";
-	let exclamation = "!";
+	const course = "Holberton";
+	const exclamation = "!";
 
 	alert(globalVariable);
 
