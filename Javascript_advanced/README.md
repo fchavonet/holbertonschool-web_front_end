@@ -35,7 +35,7 @@ This project is an advanced exploration of JavaScript concepts such as lexical s
 
 At the end of this project, I had to be able to explain to anyone, **without the help of Google** :
 
-- What is lexical scoping in JavaScript.
+- What is lexical scoping in JavaScript?
 - What is closure in JavaScript?
 - How to use closure.
 - How to chain different closures.
