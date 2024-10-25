@@ -5,7 +5,7 @@
 
     <meta charset="utf-8" />
 
-    <title>Task 2</title>
+    <title>Task 5</title>
 
     <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
 
@@ -19,9 +19,15 @@
             }
 
             createFamilyTree();
+
+            addNewMember("Guillaume", "Salva");
+            addNewMember("Arielle", "Snizt");
+            addNewMember("Fanette", "Snizt");
+            addNewMember("Gerard", "Snizt");
+            addNewMember("Victor", "Salva");
         });
 
-        // 2. Creating multiple DOM elements at once.
+        // 5. Click attribute and remove function.
         function createFamilyTree() {
             const table = `
                 <table>
@@ -31,24 +37,30 @@
                             <th>Lastname</th>
                         </tr>
                     </thead>
+
                     <tbody>
-                        <tr>
-                            <td>Guillaume</td>
-                            <td>Salva</td>
-                        </tr>
-                        <tr>
-                            <td>Paulette</td>
-                            <td>Salva</td>
-                        </tr>
-                        <tr>
-                            <td>Antoine</td>
-                            <td>Salva</td>
-                        </tr>
+
                     </tbody>
                 </table>
             `;
 
             $("body").append(table);
+        }
+
+        function addNewMember(firstName, lastName) {
+            const row = $("<tr></tr>")
+                .append($("<td></td>").text(firstName))
+                .append($("<td></td>").text(lastName))
+                .append($("<td></td>").text("(x)"));
+
+            row.find("td:last").css({
+                "background-color": "orange",
+                "cursor": "pointer"
+            }).click(function () {
+                $(this).parent().remove();
+            })
+
+            $("tbody").append(row);
         }
     </script>
 </head>
