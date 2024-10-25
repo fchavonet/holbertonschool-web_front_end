@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+
+    <meta charset="utf-8" />
+
+    <title>Task 2</title>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js"
+        integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
+
+    <script type="application/javascript">
+        // 0. Setup your dev environment.
+        $(document).ready(function () {
+            if (typeof jQuery !== "undefined") {
+                console.log("jQuery has been loaded correctly");
+            } else {
+                console.log("jQuery has not been loaded correctly");
+            }
+
+            createFamilyTree();
+        });
+
+        // 2. Creating multiple DOM elements at once.
+        function createFamilyTree() {
+            const table = `
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Firstname</th>
+                            <th>Lastname</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Guillaume</td>
+                            <td>Salva</td>
+                        </tr>
+                        <tr>
+                            <td>Paulette</td>
+                            <td>Salva</td>
+                        </tr>
+                        <tr>
+                            <td>Antoine</td>
+                            <td>Salva</td>
+                        </tr>
+                    </tbody>
+                </table>
+            `;
+
+            $("body").append(table);
+        }
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
