@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8" />
+
+    <title>Task 5</title>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js"
+        integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
+
+    <script type="application/javascript">
+        // 0. Setup your dev environment.
+        $(document).ready(function () {
+            if (typeof jQuery !== "undefined") {
+                console.log("jQuery has been loaded correctly");
+            } else {
+                console.log("jQuery has not been loaded correctly");
+            }
+
+            createForm();
+            createFamilyTree();
+        });
+
+        // 6. Val, before, and prepend functions.
+        function createFamilyTree() {
+            const table = `
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Firstname</th>
+                            <th>Lastname</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                    </tbody>
+                </table>
+            `;
+
+            $("body").append(table);
+        }
+
+        function addNewMember(firstName, lastName, position) {
+            const row = $("<tr></tr>")
+                .append($("<td></td>").text(firstName))
+                .append($("<td></td>").text(lastName))
+                .append($("<td></td>").text("(x)"));
+
+            row.find("td:last").css({
+                "background-color": "orange",
+                "cursor": "pointer"
+            }).click(function () {
+                $(this).parent().remove();
+            });
+
+            if (position === "before") {
+                $("tbody").prepend(row);
+            } else {
+                $("tbody").append(row);
+            }
+        }
+
+        function createForm() {
+            const form = `
+                <form id="memberForm">
+                    <input type="text" id="firstName" placeholder="Firstname" required>
+                    <input type="text" id="lastName" placeholder="Lastname" required>
+
+                    <select id="position">
+                        <option value="before">Before</option>
+                        <option value="after">After</option>
+                    </select>
+
+                    <input type="submit" value="Add Member">
+                </form>
+            `;
+
+            $("body").prepend(form);
+
+            $("#memberForm").submit(function (event) {
+                event.preventDefault();
+
+                const firstName = $("#firstName").val();
+                const lastName = $("#lastName").val();
+                const position = $("#position").val();
+
+                addNewMember(firstName, lastName, position);
+
+                $("#firstName").val("");
+                $("#lastName").val("");
+            });
+        }
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
