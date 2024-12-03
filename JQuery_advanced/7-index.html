@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8" />
+
+    <title>Task 7</title>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+    <script type="application/javascript">
+        // 0. Setup your dev environment.
+        $(document).ready(function () {
+            if (typeof jQuery !== "undefined") {
+                console.log("jQuery has been loaded correctly");
+            } else {
+                console.log("jQuery has not been loaded correctly");
+            }
+
+            createSearchForm();
+        });
+
+        // 7. Query - Setup your dev environment.
+        function createSearchForm() {
+            // Create form elements.
+            const form = $("<form></form>");
+            const inputText = $('<input type="text">');
+            const inputSubmit = $('<input type="submit" value="Search">');
+            const ulElement = $("<ul></ul>");
+
+            // Append inputs to form.
+            form.append(inputText);
+            form.append(inputSubmit);
+
+            // Append form and ul to body.
+            $("body").append(form);
+            $("body").append(ulElement);
+
+            // Handle form submission.
+            form.submit(function (event) {
+                event.preventDefault();
+                const searchText = inputText.val();
+                queryWikipedia(searchText);
+            });
+        }
+
+        function addNewArticle(id, title, snippet) {
+            const li = $("<li></li>");
+
+            const p1 = $("<p></p>");
+            p1.append($("<span></span>").text(id + " - "));
+            p1.append($("<b></b>").text(title));
+
+            const p2 = $("<p></p>").html(snippet);
+
+            li.append(p1);
+            li.append(p2);
+
+            $("ul").append(li);
+        }
+
+        function queryWikipedia(search) {
+            const apiUrl = "https://en.wikipedia.org/w/api.php";
+
+            const data = {
+                action: "query",
+                list: "search",
+                srsearch: search,
+                format: "json",
+                origin: "*"
+            };
+
+            $.ajax({
+                url: apiUrl,
+                data: data,
+                dataType: "json",
+
+                success: function (response) {
+                    $("ul").empty(); // Clear previous results...
+
+                    const results = response.query.search;
+
+                    for (let i = 0; i < results.length; i++) {
+                        const result = results[i];
+                        addNewArticle(result.pageid.toString(), result.title, result.snippet);
+                    }
+                },
+
+                error: function (xhr, status, error) {
+                    console.error("Error:", error);
+                }
+            });
+        }
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
