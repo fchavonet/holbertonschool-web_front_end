@@ -22,12 +22,12 @@
                 const postRow = `<p>
                     <span>Post created with id: ${data.id}, title: ${data.title}, author: ${data.author}</span>
                 </p>`;
-                $('body').append(postRow);
+                $("body").append(postRow);
             }
 
             // Function to list posts from the server.
             function listPosts() {
-                $.get('http://localhost:3000/posts')
+                $.get("http://localhost:3000/posts")
                     .done(function (response) {
                         response.forEach(post => {
                             addPostRow(post);
