@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8" />
+
+    <title>Task 12</title>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+    <script type="application/javascript">
+        // 0. Setup your dev environment.
+        $(document).ready(function () {
+            if (typeof jQuery !== "undefined") {
+                console.log("jQuery has been loaded correctly");
+            } else {
+                console.log("jQuery has not been loaded correctly");
+            }
+
+            // Function to append a post row with delete functionality.
+            function addPostRow(data) {
+                const postRow = `
+                    <p id="row-${data.id}">
+                        <span class="delete" style="cursor: pointer;" data-id="${data.id}">(delete)</span>
+                        <span>Post created with id: ${data.id}, title: ${data.title}, author: ${data.author}</span>
+                    </p>
+                `;
+                $("body").append(postRow);
+
+                // Add click event listener to the delete button.
+                $(`#row-${data.id} .delete`).on("click", function () {
+                    deletePost(data.id);
+                });
+            }
+
+            // Function to list posts from the server.
+            function listPosts() {
+                $.get("http://localhost:3000/posts")
+                    .done(function (response) {
+                        response.forEach(post => {
+                            addPostRow(post);
+                        });
+                    })
+                    .fail(function () {
+                        alert("Server Error");
+                    });
+            }
+
+            // Function to delete a post by ID.
+            function deletePost(id) {
+                $.ajax({
+                    url: `http://localhost:3000/posts/${id}`,
+                    method: "DELETE",
+                    success: function () {
+                        $(`#row-${id}`).remove(); // Remove the row from the DOM.
+                    },
+                    error: function () {
+                        alert("Post was not deleted");
+                    }
+                });
+            }
+
+            // Function to build the form.
+            function buildForm() {
+                const formHtml = `
+                    <form id="postForm">
+                        <div>
+                            <label for="author">Author</label>
+                            <input type="text" id="author" name="author" required />
+                        </div>
+                        <div>
+                            <label for="title">Title</label>
+                            <textarea id="title" name="title" required></textarea>
+                        </div>
+                        <input type="submit" value="Submit" />
+                    </form>
+                `;
+                $("body").append(formHtml);
+
+                // Handle form submission.
+                $("#postForm").on("submit", function (e) {
+                    e.preventDefault(); // Prevent page reload.
+
+                    // Fetch existing posts to calculate the next ID.
+                    $.get("http://localhost:3000/posts")
+                        .done(function (posts) {
+                            // Calculate the next ID.
+                            const maxId = Math.max(...posts.map(post => parseInt(post.id, 10) || 0));
+                            const nextId = maxId + 1;
+
+                            const data = {
+                                id: nextId.toString(),
+                                author: $("#author").val().trim(),
+                                title: $("#title").val().trim(),
+                            };
+
+                            if (!data.author || !data.title) {
+                                alert("Both 'author' and 'title' fields are required.");
+                                return;
+                            }
+
+                            // Send the POST request.
+                            $.ajax({
+                                url: "http://localhost:3000/posts",
+                                method: "POST",
+                                contentType: "application/json",
+                                data: JSON.stringify(data),
+                                success: function (response) {
+                                    addPostRow(response); // Add the new post to the page.
+                                },
+                                error: function () {
+                                    alert("Error sending the POST query");
+                                }
+                            });
+                        })
+                        .fail(function () {
+                            alert("Error fetching posts for ID generation");
+                        });
+                });
+            }
+
+            // Initialize the page.
+            listPosts();
+            buildForm();
+        });
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>
