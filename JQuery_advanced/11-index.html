@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8" />
+
+    <title>Task 11</title>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+
+    <script type="application/javascript">
+        // 0. Setup your dev environment.
+        $(document).ready(function () {
+            if (typeof jQuery !== "undefined") {
+                console.log("jQuery has been loaded correctly");
+            } else {
+                console.log("jQuery has not been loaded correctly");
+            }
+
+            // Function to append a post row.
+            function addPostRow(data) {
+                const postRow = `<p>
+                    <span>Post created with id: ${data.id}, title: ${data.title}, author: ${data.author}</span>
+                </p>`;
+                $("body").append(postRow);
+            }
+
+            // Function to list posts from the server.
+            function listPosts() {
+                $.get("http://localhost:3000/posts")
+                    .done(function (response) {
+                        response.forEach(post => {
+                            addPostRow(post);
+                        });
+                    })
+                    .fail(function () {
+                        alert("Server Error");
+                    });
+            }
+
+            // Function to build the form.
+            function buildForm() {
+                const formHtml = `
+                    <form id="postForm">
+                        <div>
+                            <label for="author">Author</label>
+                            <input type="text" id="author" name="author" required />
+                        </div>
+                        <div>
+                            <label for="title">Title</label>
+                            <textarea id="title" name="title" required></textarea>
+                        </div>
+                        <input type="submit" value="Submit" />
+                    </form>
+                `;
+                $("body").append(formHtml);
+
+                // Handle form submission.
+                $("#postForm").on("submit", function (e) {
+                    e.preventDefault(); // Prevent page reload.
+
+                    const data = {
+                        author: $("#author").val().trim(),
+                        title: $("#title").val().trim(),
+                    };
+
+                    if (!data.author || !data.title) {
+                        alert("Both 'author' and 'title' fields are required.");
+                        return;
+                    }
+
+                    $.ajax({
+                        url: "http://localhost:3000/posts",
+                        method: "POST",
+                        contentType: "application/json",
+                        data: JSON.stringify(data),
+                        success: function (response) {
+                            addPostRow(response); // Add the new post to the page.
+                        },
+                        error: function () {
+                            alert("Error sending the POST query");
+                        }
+                    });
+                });
+            }
+
+            // Initialize the page.
+            listPosts();
+            buildForm();
+        });
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>
