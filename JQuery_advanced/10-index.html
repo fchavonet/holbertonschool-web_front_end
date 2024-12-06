@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8" />
+
+    <title>Task 10</title>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+    <script type="application/javascript">
+        // 0. Setup your dev environment.
+        $(document).ready(function () {
+            if (typeof jQuery !== "undefined") {
+                console.log("jQuery has been loaded correctly");
+            } else {
+                console.log("jQuery has not been loaded correctly");
+            }
+
+            // Function to append a post row.
+            function addPostRow(data) {
+                const postRow = `<p>
+                    <span>Post created with id: ${data.id}, title: ${data.title}, author: ${data.author}</span>
+                </p>`;
+                $('body').append(postRow);
+            }
+
+            // Function to list posts from the server.
+            function listPosts() {
+                $.get('http://localhost:3000/posts')
+                    .done(function (response) {
+                        response.forEach(post => {
+                            addPostRow(post);
+                        });
+                    })
+                    .fail(function () {
+                        alert("Server Error");
+                    });
+            }
+
+            // Call listPosts when the page loads.
+            listPosts();
+        });
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

@@ -1,0 +1,64 @@
+{
+    "posts": [
+      {
+        "id": 1,
+        "title": "Dune",
+        "author": "Frank Herbert"
+      },
+      {
+        "title": "Neuromancer",
+        "author": "William Gibson",
+        "id": 2
+      },
+      {
+        "title": "Foundation",
+        "author": "Isaac Asimov",
+        "id": 3
+      },
+      {
+        "title": "Snow Crash",
+        "author": "Neal Stephenson",
+        "id": 4
+      },
+      {
+        "title": "Hyperion",
+        "author": "Dan Simmons",
+        "id": 5
+      },
+      {
+        "title": "The Left Hand Of Darkness",
+        "author": "Ursula K. Le Guin",
+        "id": 6
+      },
+      {
+        "title": "Ender's Game",
+        "author": "Orson Scott Card",
+        "id": 7
+      },
+      {
+        "title": "The Stars My Destination",
+        "author": "Alfred Bester",
+        "id": 8
+      },
+      {
+        "title": "Brave New World",
+        "author": " Aldous Huxley",
+        "id": 9
+      },
+      {
+        "title": "The Three-Body Problem",
+        "author": "Liu Cixin",
+        "id": 10
+      }
+    ],
+    "comments": [
+      {
+        "id": 1,
+        "body": "some comment",
+        "postId": 1
+      }
+    ],
+    "profile": {
+      "name": "typicode"
+    }
+  }
