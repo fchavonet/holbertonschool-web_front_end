@@ -1,0 +1,13 @@
+{
+  "name": "cookies-local-storage",
+  "version": "1.0.0",
+  "description": "Tasks to learn cookies and local storage.",
+  "scripts": {
+    "start": "webpack-dev-server --mode development"
+  },
+  "devDependencies": {
+    "webpack": "^5.x.x",
+    "webpack-cli": "^4.x.x",
+    "webpack-dev-server": "^4.15.2"
+  }
+}

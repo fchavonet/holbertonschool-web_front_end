@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Cookies local storage - Task 0</title>
+
+    <style>
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            padding: 2rem;
+        }
+
+        input,
+        button {
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <h1>Login to the website</h1>
+        <input id="firstname" type="text" placeholder="Firstname">
+        <input id="email" type="text" placeholder="Email">
+        <button onclick="setCookies();">Log me in</button>
+        <h1>Cookies</h1>
+        <button onclick="showCookies();">Show the cookies</button>
+    </main>
+
+    <script>
+        function setCookies() {
+            const firstName = document.getElementById("firstname").value;
+            const email = document.getElementById("email").value;
+
+            document.cookie = "email=" + email;
+            document.cookie = "firstname=" + firstName;
+
+            alert("Cookies have been set!");
+        }
+
+        function showCookies() {
+            const cookies = document.cookie;
+
+            const p = document.createElement("p");
+            p.innerHTML = "Cookies: " + cookies;
+            document.body.appendChild(p);
+        }
+    </script>
+</body>
+
+</html>
