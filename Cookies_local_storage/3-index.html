@@ -26,6 +26,7 @@
         }
 
         a {
+            margin-left: 10px;
             font-style: italic;
             cursor: pointer;
         }
@@ -122,8 +123,7 @@
             // Check if the user is logged in.
             if (firstName) {
                 // Hide the login form since the user is logged in.
-                const loginForm = document.getElementById("login-form");
-                loginForm.style.display = "none";
+                hideForm();
 
                 // Check if the welcome message already exists in the DOM.
                 let welcomeMessage = document.getElementById("welcome-message");
@@ -143,7 +143,7 @@
                     // If not, create a new <a> element for the logout link.
                     logoutLink = document.createElement("a");
                     logoutLink.id = "logout-link";
-                    logoutLink.innerHTML = " (logout)";
+                    logoutLink.innerHTML = "(logout)";
 
                     // Assign a click event to the logout link.
                     logoutLink.onclick = function () {
