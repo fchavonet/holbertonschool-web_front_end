@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Cookies local storage - Task 4</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js"></script>
+
+    <style>
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            padding: 2rem;
+        }
+
+        input,
+        button {
+            margin: 1rem 0;
+            padding: 0.25rem;
+        }
+
+        a {
+            margin-left: 10px;
+            font-style: italic;
+            cursor: pointer;
+        }
+
+        a:hover {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <div id="login-form">
+            <h2>Login to the website</h2>
+            <input id="firstname" type="text" placeholder="Firstname">
+            <input id="email" type="text" placeholder="Email">
+            <button onclick="setCookiesAndShowWelcomeMessage();">Log me in</button>
+        </div>
+    </main>
+
+    <script>
+        // Set cookies for user information.
+        function setCookiesAndShowWelcomeMessage() {
+            const firstName = document.getElementById("firstname").value;
+            const email = document.getElementById("email").value;
+
+            Cookies.set("firstname", firstName, { expires: 10 })
+            Cookies.set("email", email, { expires: 10 })
+
+            showWelcomeMessageOrForm();
+        }
+
+        // Show the login form.
+        function showForm() {
+            const loginForm = document.getElementById("login-form");
+            loginForm.style.display = "block";
+
+            // Remove welcome message if it exists.
+            const welcomeMessage = document.getElementById("welcome-message");
+            if (welcomeMessage) {
+                welcomeMessage.remove();
+            }
+        }
+
+        // Hide the login form.
+        function hideForm() {
+            const loginForm = document.getElementById("login-form");
+            loginForm.style.display = "none";
+        }
+
+        // Delete cookies and show the form.
+        function deleteCookiesAndShowForm() {
+            Cookies.remove("firstname");
+            Cookies.remove("email");
+            showForm();
+        }
+
+        // Show either the welcome message or the login form.
+        function showWelcomeMessageOrForm() {
+            const firstName = Cookies.get("firstname");
+
+            // Check if the user is logged in.
+            if (firstName) {
+                // Hide the login form since the user is logged in.
+                hideForm();
+
+                // Check if the welcome message already exists in the DOM.
+                let welcomeMessage = document.getElementById("welcome-message");
+                if (!welcomeMessage) {
+                    // If not, create a new <h1> element for the welcome message.
+                    welcomeMessage = document.createElement("h1");
+                    welcomeMessage.id = "welcome-message";
+                    document.body.appendChild(welcomeMessage);
+                }
+
+                // Update the welcome message with the user's first name.
+                welcomeMessage.innerHTML = "Welcome: " + firstName;
+
+                // Check if the logout link already exists in the DOM.
+                let logoutLink = document.getElementById("logout-link");
+                if (!logoutLink) {
+                    // If not, create a new <a> element for the logout link.
+                    logoutLink = document.createElement("a");
+                    logoutLink.id = "logout-link";
+                    logoutLink.innerHTML = "(logout)";
+
+                    // Assign a click event to the logout link.
+                    logoutLink.onclick = function () {
+                        deleteCookiesAndShowForm();
+                    };
+
+                    // Append the logout link to the welcome message.
+                    welcomeMessage.appendChild(logoutLink);
+                }
+            } else {
+                // If the user is not logged in, show the login form.
+                showForm();
+            }
+        }
+
+        showWelcomeMessageOrForm();
+    </script>
+</body>
+
+</html>
