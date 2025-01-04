@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Cookies local storage - Task 6</title>
+</head>
+
+<body>
+    <script>
+        // Array of available items for the store.
+        const availableItems = ["Shampoo", "Soap", "Sponge", "Water"];
+
+        // Check if the browser supports local storage.
+        if (typeof (Storage) !== "undefined") {
+            createStore();
+            displayCart();
+        } else {
+            alert("Sorry, your browser does not support Web storage. Try again with a better one");
+        }
+
+        // Adds an item to the cart by storing it in local storage.
+        function addItemToCart(item) {
+            sessionStorage.setItem(item, true);
+        }
+
+        // Creates the store UI with available items.
+        function createStore() {
+            const ul = document.createElement("ul");
+
+            availableItems.forEach(function (item) {
+                const li = document.createElement("li");
+                li.textContent = item;
+
+                li.onclick = function () {
+                    addItemToCart(item)
+                };
+
+                ul.appendChild(li);
+            });
+
+            document.body.appendChild(ul);
+        }
+
+        // Displays the cart message if there are items in the cart.
+        function displayCart() {
+            const cartItems = Object.keys(sessionStorage);
+
+            if (cartItems.length > 0) {
+                const p = document.createElement("p");
+                p.textContent = "You previously had " + cartItems.length + " items in your cart.";
+                document.body.appendChild(p);
+            }
+        }
+    </script>
+</body>
+
+</html>
