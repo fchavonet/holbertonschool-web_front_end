@@ -458,13 +458,14 @@ node_modules/.bin/webpack-dev-server
 
 3. You can also directly test the results of my work through the following links:
 
-- [0. Create basic cookie](https://fchavonet.github.io/holbertonschool-web_front_end/Cookies_local_storage/1-index.html)
-- [1. Create cookie with expiration date and specific path](https://fchavonet.github.io/holbertonschool-web_front_end/Cookies_local_storage/2-index.html)
-- [2. Read cookie](https://fchavonet.github.io/holbertonschool-web_front_end/Cookies_local_storage/3-index.html)
-- [3. Delete cookie and mini application](https://fchavonet.github.io/holbertonschool-web_front_end/Cookies_local_storage/4-index.html)
-- [4. Use js-cookie](https://fchavonet.github.io/holbertonschool-web_front_end/Cookies_local_storage/5-index.html)
-- [5. Local storage](https://fchavonet.github.io/holbertonschool-web_front_end/Cookies_local_storage/6-index.html)
-- [6. Session storage](https://fchavonet.github.io/holbertonschool-web_front_end/Cookies_local_storage/7-index.html)
+- [0. Create basic cookie](https://fchavonet.github.io/holbertonschool-web_front_end/Cookies_local_storage/0-index.html)
+- [1. Create cookie with expiration date and specific path](https://fchavonet.github.io/holbertonschool-web_front_end/Cookies_local_storage/1-index.html)
+- [2. Read cookie](https://fchavonet.github.io/holbertonschool-web_front_end/Cookies_local_storage/2-index.html)
+- [3. Delete cookie and mini application](https://fchavonet.github.io/holbertonschool-web_front_end/Cookies_local_storage/3-index.html)
+- [4. Use js-cookie](https://fchavonet.github.io/holbertonschool-web_front_end/Cookies_local_storage/4-index.html)
+- [5. Local storage](https://fchavonet.github.io/holbertonschool-web_front_end/Cookies_local_storage/5-index.html)
+- [6. Session storage](https://fchavonet.github.io/holbertonschool-web_front_end/Cookies_local_storage/6-index.html)
+- [7. Advanced use of web storage](https://fchavonet.github.io/holbertonschool-web_front_end/Cookies_local_storage/7-index.html)
 
 *Read the <a href="#instructions">instructions</a> part to  understand what was being asked of me.*
 
